@@ -1,0 +1,42 @@
+#include <LiquidCrystal.h>
+
+// initialize the library by associating any needed LCD interface pin
+// with the arduino pin number it is connected to
+const int rs = 8, en = 9, d4 = 4, d5 = 5, d6 = 6, d7 = 7;
+LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+
+void setup() {
+  lcd.begin(16,2); //lcd column and rows
+  lcd.print("Stoper Arduino 0");
+  lcd.setCursor(0,1);
+  lcd.print("Press 'SELECT'");
+  
+  }
+
+void pomiar() {
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("WORK IN PROGRESS");
+  lcd.setCursor(0,1);
+  lcd.print("TIME:");
+  
+  for(; ;) { //nieskonczona petla, ale bedzie trzeba powiazac iterator z przyciskiem zakonczenia
+
+    int czas = millis()/1000; //konwersja na sekundy
+    lcd.setCursor(6,1);//ustawienie kursora, by nie zajezdzil calego wyswietlacza
+    lcd.print(czas);
+   
+   }
+}
+
+void loop() {
+  
+   int przycisk;
+  przycisk = analogRead (0);
+   
+   if (przycisk < 800){
+   
+   pomiar();   
+}
+ 
+}
